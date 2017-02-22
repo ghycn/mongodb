@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<!-- 启动扫描所有的controller -->
+    <context:annotation-config />
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="com.org.hsd">
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+
+	<!--定时任务线程池-->
+	<task:annotation-driven scheduler="myScheduler"/>
+	<task:scheduler id="myScheduler" pool-size="10"/>
+
+	<!--初始化执行-->
+	<bean class="com.org.hsd.web.InitListener"></bean>
+
+	<!-- 静态资源 -->
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+
+	 <!-- jsp页面解析器，当Controller返回XXX字符串时，先通过拦截器，然后该类就会在/WEB-INF/jsp/目录下，查找XXX.jsp文件-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>
