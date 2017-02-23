@@ -15,20 +15,15 @@
 	http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 
 	<!-- 启动扫描所有的controller -->
-    <context:annotation-config />
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.org.hsd">
-	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-	</context:component-scan>
-
+    <context:component-scan base-package="com.org.hsd"/>
 
 	<!--定时任务线程池-->
 	<task:annotation-driven scheduler="myScheduler"/>
 	<task:scheduler id="myScheduler" pool-size="10"/>
 
 	<!--初始化执行-->
-	<bean class="com.org.hsd.web.InitListener"></bean>
+	<bean class="com.org.hsd.web.InitListener"/>
 
 	<!-- 静态资源 -->
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />

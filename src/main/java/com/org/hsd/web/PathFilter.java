@@ -17,14 +17,7 @@ public class PathFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String path = req.getContextPath();
-        String myserver = req.getServerName() + ":" + req.getServerPort() + path;
         req.setAttribute("ctx", path);
-//        req.setAttribute("myserver", myserver);
-        String pathInfo = req.getRequestURI();
-        if (pathInfo == null || pathInfo.equals(path) || pathInfo.equals(path + "/") || "".equals(pathInfo)) {
-            resp.sendRedirect(path + "/index.do");
-            return;
-        }
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
