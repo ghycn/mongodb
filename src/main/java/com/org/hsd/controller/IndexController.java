@@ -1,5 +1,6 @@
 package com.org.hsd.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.org.hsd.model.User;
 import com.org.hsd.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class IndexController {
     public String queryUser (){
         List<User> list = userService.queryUserAll();
         System.out.println(list.size());
-        return "";
+        return JSON.toJSONString(list);
     }
 
     @ResponseBody
@@ -37,6 +38,14 @@ public class IndexController {
     public String insertUser(){
          int  result = userService.insertUser();
          return result+"";
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "ajax/test.do")
+    public String test(String query)
+    {
+        return "[{ \"id\": 1, \"name\": \"New York\" }, { \"id\": 2, \"name\": \"Shanghai\"}]";
     }
 
 }
