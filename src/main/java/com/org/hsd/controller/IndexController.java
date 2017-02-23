@@ -43,8 +43,7 @@ public class IndexController {
 
     @ResponseBody
     @RequestMapping(value = "ajax/test.do")
-    public String test(String query)
-    {
+    public String test(String query){
         return "[{ \"id\": 1, \"name\": \"New York\" }, { \"id\": 2, \"name\": \"Shanghai\"}]";
     }
 
