@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-<!-- 	<properties resource="F:/workspace/flyhx/src/main/resources/jdbc.properties" /> -->
+ 	<!--<properties resource="jdbc.properties" />-->
 	<classPathEntry
-		location="C:\Users\Administrator\.DataGrip2016.2\config\jdbc-drivers\ojdbc14.jar" />
+		location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.0.5\mysql-connector-java-5.0.5.jar" />
 	<context id="context1">
 		<commentGenerator>
 			<property name="suppressDate" value="false" />
@@ -11,20 +11,20 @@
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		<!-- 数据库访问的驱动包 -->
-		<jdbcConnection  driverClass="oracle.jdbc.driver.OracleDriver"
-			connectionURL="jdbc:oracle:thin:@112.124.101.248:1521:orcl" userId="FLIGHTRADAR" password="FLIGHTRADAR" />
-		<javaModelGenerator targetPackage="com.hsd.flyht.model" 
-			targetProject="flyhx"  >
+		<jdbcConnection
+				driverClass="com.mysql.jdbc.Driver"
+			    connectionURL="jdbc:mysql://localhost:3306/test"
+				userId="root"
+				password="123456" />
+		<javaModelGenerator targetPackage="com.org.hsd.model" targetProject="F:/ideaSpace/项目/base/src/main/java"  >
 			  <!-- enableSubPackages:是否让schema作为包的后缀 -->      
-     			 <property name="enableSubPackages" value="false"/> 
+     		  <property name="enableSubPackages" value="false"/>
               <!-- 从数据库返回的值被清理前后的空格  -->  
-   			   <property name="trimStrings" value="true" />
+   			  <property name="trimStrings" value="true" />
 		</javaModelGenerator>	
-		<sqlMapGenerator targetPackage="com.hsd.flyht.dao.mapping"
-			targetProject="flyhx" />
-		<javaClientGenerator targetPackage="com.hsd.flyht.dao"
-			targetProject="flyhx" type="XMLMAPPER" />
-		<table schema="FLIGHTRADAR"  tableName="WARNING" enableCountByExample="false"
+		<sqlMapGenerator targetPackage="com.org.hsd.mapper.mapping" targetProject="F:/ideaSpace/项目/base/src/main/java" />
+		<javaClientGenerator targetPackage="com.org.hsd.mapper" targetProject="F:/ideaSpace/项目/base/src/main/java" type="XMLMAPPER" />
+		<table schema="test"  tableName="user" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
