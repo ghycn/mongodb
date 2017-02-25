@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/2/23.
@@ -19,7 +21,9 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     public List<User> queryUserAll() {
-        List<User> list = userMapper.selectByMap(null);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("name","Tom");
+        List<User> list = userMapper.selectByMap(map);
         return list;
     }
 
