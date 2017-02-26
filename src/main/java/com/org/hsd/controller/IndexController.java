@@ -19,7 +19,7 @@ public class IndexController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/index.do")
     public String index(){
         System.out.println(55);
         return "index";

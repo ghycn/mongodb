@@ -16,9 +16,13 @@
 
 	<!-- 启动扫描所有的controller -->
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.org.hsd"/>
+    <context:component-scan base-package="com.org.hsd">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
 
-	<!--定时任务线程池-->
+
+		<!--定时任务线程池-->
 	<task:annotation-driven scheduler="myScheduler"/>
 	<task:scheduler id="myScheduler" pool-size="10"/>
 
