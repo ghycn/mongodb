@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by Administrator on 2017/2/23.
  */
 @Controller
 public class IndexController {
+    private static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     @Autowired
     IUserService userService;
@@ -26,18 +28,15 @@ public class IndexController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/queryUser.do")
-    public String queryUser (){
-        List<User> list = userService.queryUserAll();
-        System.out.println(list.size());
-        return JSON.toJSONString(list);
-    }
+    @RequestMapping("/save")
+    public String saveUser(){
+        User user = new User();
 
-    @ResponseBody
-    @RequestMapping(value = "/insertUser.do")
-    public String insertUser(){
-         int  result = userService.insertUser();
-         return result+"";
+        logger.info("save:"+user);
+
+        userService.saveUser(user);
+
+        return "index";
     }
 
 

@@ -1,63 +1,41 @@
 package com.org.hsd.model;
 
-public class User {
-    private String id;
+import org.springframework.data.annotation.Id;
 
-    private String name;
+import java.io.Serializable;
 
-    private String password;
+public class User implements Serializable {
 
-    private Integer age;
+    private static final long serialVersionUID = 1L;
 
-    private Integer sex;
+    @Id
+    String uid;
+    String name;
+    int age;
 
-    private String birthday;
 
-    public String getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setUid(String uid) {
+        this.uid = uid;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
-
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public Integer getSex() {
-        return sex;
+    @Override
+    public String toString() {
+        return "{USER:{uid:"+this.uid+",name:"+this.name+",age:"+this.age+"}}";
     }
 
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday == null ? null : birthday.trim();
-    }
 }

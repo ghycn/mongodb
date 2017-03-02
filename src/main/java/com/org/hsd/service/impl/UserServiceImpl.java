@@ -1,39 +1,30 @@
 package com.org.hsd.service.impl;
 
-import com.org.hsd.mapper.UserMapper;
 import com.org.hsd.model.User;
 import com.org.hsd.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.UUID;
+
 
 /**
  * Created by Administrator on 2017/2/23.
  */
 @Service
 public class UserServiceImpl implements IUserService {
+
+    private static String USER_COLLECTION = "user";
+
     @Autowired
-    private UserMapper userMapper;
+    MongoTemplate mongoTemplate;
 
-    public List<User> queryUserAll() {
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("name","Tom");
-        List<User> list = userMapper.selectByMap(map);
-        return list;
-    }
-
-    public int insertUser() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        User user = new User();
-        user.setAge(15);
-        user.setId("1");
+    public void saveUser(User user) {
         user.setName("Tom");
-        user.setBirthday(sdf.format(new Date()));
-        return userMapper.insert(user);
+        user.setAge(15);
+        user.setUid(UUID.randomUUID().toString());
+        mongoTemplate.save(user,USER_COLLECTION);
+
     }
 }
