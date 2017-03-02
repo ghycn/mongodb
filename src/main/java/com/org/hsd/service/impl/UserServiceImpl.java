@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.logging.Logger;
 
 
 /**
@@ -14,6 +15,7 @@ import java.util.UUID;
  */
 @Service
 public class UserServiceImpl implements IUserService {
+    private static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
 
     private static String USER_COLLECTION = "user";
 
@@ -24,6 +26,7 @@ public class UserServiceImpl implements IUserService {
         user.setName("Tom");
         user.setAge(15);
         user.setUid(UUID.randomUUID().toString());
+        logger.info("save:"+user);
         mongoTemplate.save(user,USER_COLLECTION);
 
     }

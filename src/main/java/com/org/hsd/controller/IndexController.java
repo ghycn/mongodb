@@ -31,11 +31,8 @@ public class IndexController {
     @RequestMapping("/save")
     public String saveUser(){
         User user = new User();
-
         logger.info("save:"+user);
-
         userService.saveUser(user);
-
         return "index";
     }
 
