@@ -27,6 +27,10 @@ public class IndexController {
         return "index";
     }
 
+    /**
+     * 保存
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/save")
     public String saveUser(){
@@ -35,6 +39,20 @@ public class IndexController {
         userService.saveUser(user);
         return "index";
     }
+
+
+
+    /**
+     * 查询
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/query")
+    public String queryUser(){
+        User user =  userService.queryUser();
+        return JSON.toJSONString(user);
+    }
+
 
 
     @ResponseBody

@@ -30,4 +30,10 @@ public class UserServiceImpl implements IUserService {
         mongoTemplate.save(user,USER_COLLECTION);
 
     }
+
+    public User queryUser() {
+      return   mongoTemplate.findById("586b4e620659e85742ab5d9b",User.class);
+
+    }
+
 }
